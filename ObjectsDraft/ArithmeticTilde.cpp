@@ -21,23 +21,12 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS__
-#define __DEF_KIWI_OBJECTS__
 
-#include "ObjectsBasics/ObjectsBasics.h"
-#include "ObjectsGui/ObjectsGui.h"
-#include "ObjectsDsp/ObjectsDsp.h"
+#include "ArithmeticTilde.h"
+#include "../KiwiBase/Tools.h"
 
 namespace Kiwi
 {
-    inline void ObjectsInitialize()
-    {
-		ObjectsBasicsInitialize();
-		ObjectsGuiInitialize();
-        ObjectsTildeInitialize();
-    }
+    ;
 }
-
-#endif
-
 

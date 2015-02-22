@@ -21,20 +21,27 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS__
-#define __DEF_KIWI_OBJECTS__
+#ifndef __DEF_KIWI_GENERATOR_TILDE__
+#define __DEF_KIWI_GENERATOR_TILDE__
 
-#include "ObjectsBasics/ObjectsBasics.h"
-#include "ObjectsGui/ObjectsGui.h"
-#include "ObjectsDsp/ObjectsDsp.h"
+#include "../KiwiBase/Core.h"
+#include "../KiwiDsp/Dsp.h"
 
 namespace Kiwi
 {
-    inline void ObjectsInitialize()
+    class SigTilde : public Object, public Dsp::Sig
     {
-		ObjectsBasicsInitialize();
-		ObjectsGuiInitialize();
-        ObjectsTildeInitialize();
+    public:
+        SigTilde(sPage page);
+        SigTilde(sPage page, const double value);
+        ~SigTilde();
+        void receive(ulong index, ElemVector const& elements) override;
+        sObject allocate(sPage page, sDico dico) const override;
+    };
+    
+    inline void GeneratorTildeInit()
+    {
+        Object::addPrototype(unique_ptr<Object>(new SigTilde(sPage())));
     }
 }
 

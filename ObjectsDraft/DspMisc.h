@@ -21,21 +21,34 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS__
-#define __DEF_KIWI_OBJECTS__
+#ifndef __DEF_KIWI_MISC_TILDE__
+#define __DEF_KIWI_MISC_TILDE__
 
-#include "ObjectsBasics/ObjectsBasics.h"
-#include "ObjectsGui/ObjectsGui.h"
-#include "ObjectsDsp/ObjectsDsp.h"
+#include "../KiwiBase/Core.h"
+#include "../KiwiDsp/Dsp.h"
 
 namespace Kiwi
 {
-    inline void ObjectsInitialize()
+    /*
+    class SnapshotTilde : public Object, public Dsp::Process
     {
-		ObjectsBasicsInitialize();
-		ObjectsGuiInitialize();
-        ObjectsTildeInitialize();
-    }
+    public:
+        SnapshotTilde(sPage page);
+        SnapshotTilde(sPage page, const double value);
+        ~SnapshotTilde();
+        bool receive(ulong index, ElemVector const& elements) override;
+        sObject allocate(sPage page, sDico dico) const override;
+        ulong getNumberOfInputs() const noexcept override;
+        ulong getNumberOfOutputs() const noexcept override;
+        void prepare(Dsp::sNode node) const noexcept override;
+        void perform(Dsp::scNode node) const noexcept override;
+        void release(Dsp::scNode node) const noexcept override;
+    };
+    
+    inline void MiscTildeInit()
+    {
+        Object::addPrototype(unique_ptr<Object>(new SnapshotTilde(sPage())));
+    }*/
 }
 
 #endif
