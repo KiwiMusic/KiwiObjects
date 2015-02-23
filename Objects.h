@@ -32,7 +32,7 @@ namespace Kiwi
 {
     inline void ObjectsInitialize()
     {
-		ObjectsBasicsInitialize();
+		//ObjectsBasicsInitialize();
 		ObjectsGuiInitialize();
         ObjectsTildeInitialize();
     }
