@@ -32,7 +32,7 @@ namespace Kiwi
     //                                    NEWBOX                                        //
     // ================================================================================ //
 	
-	class NewBox : public Object, public Gui::Default
+	class NewBox : public Object, public Kiwi::Default
     {
     public:
         NewBox(Detail const& detail);

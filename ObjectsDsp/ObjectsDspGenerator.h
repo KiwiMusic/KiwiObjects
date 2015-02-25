@@ -28,7 +28,7 @@
 
 namespace Kiwi
 {
-    class NoiseTilde : public Object, public DspNoise, public Gui::Button // Button for the moment
+    class NoiseTilde : public Object, public DspNoise, public Kiwi::Button // Button for the moment
     {
     public:
         NoiseTilde(Detail const& detail);

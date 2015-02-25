@@ -28,7 +28,7 @@
 
 namespace Kiwi
 {
-    class DacTilde : public Object, public DspDac, public Gui::Button // Button for the moment
+    class DacTilde : public Object, public DspDac, public Kiwi::Button // Button for the moment
     {
     public:
         DacTilde(Detail const& detail);

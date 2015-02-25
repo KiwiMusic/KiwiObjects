@@ -36,7 +36,7 @@ namespace Kiwi
     //                                      BANG                                        //
     // ================================================================================ //
     
-    class Bang : public Object, public Gui::Button, public Clock::Maker
+    class Bang : public Object, public Kiwi::Button, public Clock::Maker
     {
     private:
         sClock  m_clock;
