@@ -30,11 +30,12 @@
 
 namespace Kiwi
 {
-    inline void ObjectsInitialize()
+    inline bool ObjectsInitialize()
     {
-		//ObjectsBasicsInitialize();
+		ObjectsBasicsInitialize();
 		ObjectsGuiInitialize();
         ObjectsTildeInitialize();
+        return true;
     }
 }
 

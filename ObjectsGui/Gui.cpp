@@ -52,7 +52,6 @@ namespace Kiwi
     {
         if(!atoms.empty())
         {
-            Console::post("bang receive " + toString(atoms));
             Object::send(0, {Tag::List::bang});
             m_led = true;
             redraw();
