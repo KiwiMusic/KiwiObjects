@@ -30,8 +30,7 @@ namespace Kiwi
     //                                      BANG                                        //
     // ================================================================================ //
     
-    Bang::Bang(Detail const& detail) : Object(detail, Tag::create("bang")),
-    m_clock(Clock::create())
+    Bang::Bang(Detail const& detail) : Object(detail, Tag::create("bang"))
     {
         addInlet(Io::Message, Io::Hot, "Flash (anything)");
         addOutlet(Io::Message, "Output (bang)");
@@ -55,7 +54,7 @@ namespace Kiwi
             Object::send(0, {Tag::List::bang});
             m_led = true;
             redraw();
-            m_clock->delay(getShared(), 150);
+            delay(150);
         }
     }
     
