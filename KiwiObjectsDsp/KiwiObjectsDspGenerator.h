@@ -21,8 +21,8 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS_GENERATOR_TILDE__
-#define __DEF_KIWI_OBJECTS_GENERATOR_TILDE__
+#ifndef __DEF_KIWI_OBJECTS_DSP_GENERATOR__
+#define __DEF_KIWI_OBJECTS_DSP_GENERATOR__
 
 #include "../../KiwiPatcher/KiwiPatcher.h"
 

@@ -21,27 +21,17 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_NEWBOX__
-#define __DEF_KIWI_NEWBOX__
+#ifndef __DEF_KIWI_OBJECTS_BASIC__
+#define __DEF_KIWI_OBJECTS_BASIC__
 
-#include "../../KiwiPatcher/KiwiPatcher.h"
+#include "KiwiObjectsBasicDefault.h"
 
 namespace Kiwi
 {
-    // ================================================================================ //
-    //                                    NEWBOX                                        //
-    // ================================================================================ //
-	
-	class NewBox : public Object, public Kiwi::Default
+    inline void ObjectsBasicsInitialize()
     {
-    public:
-        NewBox(Detail const& detail);
-        ~NewBox();
-		
-        void receive(ulong index, vector<Atom> const& atoms) override;
-		
-		void doubleClick() override {};
-    };
+        Factory::add<NewBox>();
+    }
 }
 
 #endif

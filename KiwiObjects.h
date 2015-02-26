@@ -21,27 +21,24 @@
  ==============================================================================
 */
 
+#ifndef __DEF_KIWI_OBJECTS__
+#define __DEF_KIWI_OBJECTS__
 
-#include "NewBox.h"
+#include "KiwiObjectsBasic/KiwiObjectsBasic.h"
+#include "KiwiObjectsGui/KiwiObjectsGui.h"
+#include "KiwiObjectsDsp/KiwiObjectsDsp.h"
 
 namespace Kiwi
 {
-    // ================================================================================ //
-    //                                      NEWBOX                                      //
-    // ================================================================================ //
-	
-	NewBox::NewBox(Detail const& detail) : Object(detail, Tag::create("newbox"))
-	{
-		;
-	}
-	
-	NewBox::~NewBox()
-	{
-		;
-	}
-	
-	void NewBox::receive(ulong index, vector<Atom> const& atoms)
-	{
-		;
-	}
+    inline bool ObjectsInitialize()
+    {
+		ObjectsBasicsInitialize();
+		ObjectsGuiInitialize();
+        ObjectsTildeInitialize();
+        return true;
+    }
 }
+
+#endif
+
+

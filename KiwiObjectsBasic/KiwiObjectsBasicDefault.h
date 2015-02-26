@@ -21,30 +21,26 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_GUI_BOXES__
-#define __DEF_KIWI_GUI_BOXES__
+#ifndef __DEF_KIWI_OBJECTS_BASIC_DEFAULT__
+#define __DEF_KIWI_OBJECTS_BASIC_DEFAULT__
 
 #include "../../KiwiPatcher/KiwiPatcher.h"
 
 namespace Kiwi
 {
     // ================================================================================ //
-    //                                      GUI                                         //
+    //                                    NEWBOX                                        //
     // ================================================================================ //
-    
-    // ================================================================================ //
-    //                                      BANG                                        //
-    // ================================================================================ //
-    
-    class Bang : public Object, public Kiwi::Button, public Clock
+	
+	class NewBox : public Object, public Kiwi::Default
     {
     public:
-        Bang(Detail const& detail);
-        ~Bang();
+        NewBox(Detail const& detail);
+        ~NewBox();
+		
         void receive(ulong index, vector<Atom> const& atoms) override;
-        void tick() override;
-    protected:
-        void bang() override;
+		
+		void doubleClick() override {};
     };
 }
 

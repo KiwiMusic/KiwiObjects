@@ -21,21 +21,28 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS_TILDE__
-#define __DEF_KIWI_OBJECTS_TILDE__
-
-#include "ObjectsDspIo.h"
-#include "ObjectsDspGenerator.h"
+#include "KiwiObjectsDspGenerator.h"
 
 namespace Kiwi
 {
-    inline void ObjectsTildeInitialize()
+    NoiseTilde::NoiseTilde(Detail const& detail) : Object(detail, Tag::create("noise~")), DspNoise(detail.patcher)
     {
-        ObjectsGeneratorTildeInit();
-        ObjectsIoTildeInit();
+        addOutlet(Io::Signal, "White noise (signal)");
+    }
+    
+    NoiseTilde::~NoiseTilde()
+    {
+        ;
+    }
+    
+    void NoiseTilde::receive(ulong index, vector<Atom> const& atoms)
+    {
+        ;
+    }
+    
+    void NoiseTilde::bang()
+    {
+        ;
     }
 }
-
-#endif
-
 

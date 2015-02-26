@@ -21,21 +21,18 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS__
-#define __DEF_KIWI_OBJECTS__
+#ifndef __DEF_KIWI_OBJECTS_DSP__
+#define __DEF_KIWI_OBJECTS_DSP__
 
-#include "ObjectsBasics/ObjectsBasics.h"
-#include "ObjectsGui/ObjectsGui.h"
-#include "ObjectsDsp/ObjectsDsp.h"
+#include "KiwiObjectsDspIo.h"
+#include "KiwiObjectsDspGenerator.h"
 
 namespace Kiwi
 {
-    inline bool ObjectsInitialize()
+    inline void ObjectsTildeInitialize()
     {
-		ObjectsBasicsInitialize();
-		ObjectsGuiInitialize();
-        ObjectsTildeInitialize();
-        return true;
+        ObjectsGeneratorTildeInit();
+        ObjectsIoTildeInit();
     }
 }
 

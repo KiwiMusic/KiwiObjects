@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_OBJECTS_GUI__
 #define __DEF_KIWI_OBJECTS_GUI__
 
-#include "Gui.h"
+#include "KiwiObjectsGuiClassic.h"
 
 namespace Kiwi
 {

@@ -21,28 +21,46 @@
  ==============================================================================
 */
 
-#include "ObjectsDspGenerator.h"
+
+#include "KiwiObjectsGuiClassic.h"
 
 namespace Kiwi
 {
-    NoiseTilde::NoiseTilde(Detail const& detail) : Object(detail, Tag::create("noise~")), DspNoise(detail.patcher)
+    // ================================================================================ //
+    //                                      BANG                                        //
+    // ================================================================================ //
+    
+    Bang::Bang(Detail const& detail) : Object(detail, Tag::create("bang"))
     {
-        addOutlet(Io::Signal, "White noise (signal)");
+        addInlet(Io::Message, Io::Hot, "Flash (anything)");
+        addOutlet(Io::Message, "Output (bang)");
     }
     
-    NoiseTilde::~NoiseTilde()
+    Bang::~Bang()
     {
         ;
     }
     
-    void NoiseTilde::receive(ulong index, vector<Atom> const& atoms)
+    void Bang::tick()
     {
-        ;
+        m_led = false;
+        redraw();
     }
     
-    void NoiseTilde::bang()
+    void Bang::receive(ulong index, vector<Atom> const& atoms)
     {
-        ;
+        if(!atoms.empty())
+        {
+            Object::send(0, {Tag::List::bang});
+            m_led = true;
+            redraw();
+            delay(150);
+        }
+    }
+    
+    void Bang::bang()
+    {
+        Object::send(0, {Tag::List::bang});
     }
 }
 

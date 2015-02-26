@@ -22,45 +22,26 @@
 */
 
 
-#include "Gui.h"
+#include "KiwiObjectsBasicDefault.h"
 
 namespace Kiwi
 {
     // ================================================================================ //
-    //                                      BANG                                        //
+    //                                      NEWBOX                                      //
     // ================================================================================ //
-    
-    Bang::Bang(Detail const& detail) : Object(detail, Tag::create("bang"))
-    {
-        addInlet(Io::Message, Io::Hot, "Flash (anything)");
-        addOutlet(Io::Message, "Output (bang)");
-    }
-    
-    Bang::~Bang()
-    {
-        ;
-    }
-    
-    void Bang::tick()
-    {
-        m_led = false;
-        redraw();
-    }
-    
-    void Bang::receive(ulong index, vector<Atom> const& atoms)
-    {
-        if(!atoms.empty())
-        {
-            Object::send(0, {Tag::List::bang});
-            m_led = true;
-            redraw();
-            delay(150);
-        }
-    }
-    
-    void Bang::bang()
-    {
-        Object::send(0, {Tag::List::bang});
-    }
+	
+	NewBox::NewBox(Detail const& detail) : Object(detail, Tag::create("newbox"))
+	{
+		;
+	}
+	
+	NewBox::~NewBox()
+	{
+		;
+	}
+	
+	void NewBox::receive(ulong index, vector<Atom> const& atoms)
+	{
+		;
+	}
 }
-

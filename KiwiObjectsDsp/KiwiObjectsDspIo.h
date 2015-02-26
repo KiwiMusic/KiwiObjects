@@ -21,8 +21,8 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS_IO_TILDE__
-#define __DEF_KIWI_OBJECTS_IO_TILDE__
+#ifndef __DEF_KIWI_OBJECTS_DSP_IO__
+#define __DEF_KIWI_OBJECTS_DSP_IO__
 
 #include "../../KiwiPatcher/KiwiPatcher.h"
 
