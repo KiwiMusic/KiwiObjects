@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_OBJECTS_GENERATOR_TILDE__
 #define __DEF_KIWI_OBJECTS_GENERATOR_TILDE__
 
-#include "../../KiwiBase/Core.h"
+#include "../../KiwiPatcher/KiwiPatcher.h"
 
 namespace Kiwi
 {

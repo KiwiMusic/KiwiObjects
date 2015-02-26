@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_NEWBOX__
 #define __DEF_KIWI_NEWBOX__
 
-#include "../../KiwiBase/Core.h"
+#include "../../KiwiPatcher/KiwiPatcher.h"
 
 namespace Kiwi
 {

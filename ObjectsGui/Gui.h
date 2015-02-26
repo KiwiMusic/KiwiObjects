@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_GUI_BOXES__
 #define __DEF_KIWI_GUI_BOXES__
 
-#include "../../KiwiBase/Core.h"
+#include "../../KiwiPatcher/KiwiPatcher.h"
 
 namespace Kiwi
 {
