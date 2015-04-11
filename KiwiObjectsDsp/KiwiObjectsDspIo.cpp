@@ -25,6 +25,7 @@
 
 namespace Kiwi
 {
+    /*
     static vector<ulong> fromAtomVecToUlongVec(vector<Atom> const& atoms)
     {
         vector<ulong> vec;
@@ -38,7 +39,7 @@ namespace Kiwi
         return vec;
     }
     
-    DacTilde::DacTilde(Detail const& detail) :
+    DacTilde::DacTilde(Infos const& detail) :
     Object(detail, Tag::create("dac~")),
     DspDac(detail.patcher, fromAtomVecToUlongVec(detail.args))
     {
@@ -63,6 +64,6 @@ namespace Kiwi
     void DacTilde::bang()
     {
         ;
-    }
+    }*/
 }
 

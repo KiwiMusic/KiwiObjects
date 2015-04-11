@@ -28,19 +28,20 @@
 
 namespace Kiwi
 {
+    /*
     class NoiseTilde : public Object, public DspNoise::White, public Kiwi::Button // Button for the moment
     {
     public:
-        NoiseTilde(Detail const& detail);
+        NoiseTilde(Infos const& detail);
         ~NoiseTilde();
         void receive(ulong index, vector<Atom> const& atoms) override;
     protected:
         void bang() override;
     };
-    
+    */
     inline void ObjectsGeneratorTildeInit()
     {
-        Factory::add<NoiseTilde>();
+        //Factory::add<NoiseTilde>();
     }
 }
 

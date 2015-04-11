@@ -30,7 +30,7 @@ namespace Kiwi
 {
     inline void ObjectsBasicsInitialize()
     {
-        Factory::add<NewBox>();
+        //Factory::add<NewBox>();
     }
 }
 

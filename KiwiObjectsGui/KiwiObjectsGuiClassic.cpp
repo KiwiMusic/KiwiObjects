@@ -30,10 +30,18 @@ namespace Kiwi
     //                                      BANG                                        //
     // ================================================================================ //
     
-    Bang::Bang(Detail const& detail) : Object(detail, Tag::create("bang"))
+    Bang::Bang(Infos const& detail) : Object(detail, Tag::create("bang"))
     {
+        addAttr(Attr::create("bgcolor", "Background Color", "Color", ColorValue(1., 1., 1., 1.)));
+        addAttr(Attr::create("bdcolor", "Border Color",     "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
+        addAttr(Attr::create("circlecolor", "Circle Color", "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
+        addAttr(Attr::create("ledcolor",    "Led Color",    "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
+        getAttrTyped<SizeValue>("size")->setValue(Size(20., 20., 10., 10., 1.));
+        
         addInlet(Io::Message, Io::Hot, "Flash (anything)");
         addOutlet(Io::Message, "Output (bang)");
+        
+        m_led = false;
     }
     
     Bang::~Bang()
@@ -58,9 +66,50 @@ namespace Kiwi
         }
     }
     
-    void Bang::bang()
+    bool Bang::receive(scGuiController ctrl, MouseEvent const& event)
     {
-        Object::send(0, {Tag::List::bang});
+        if(event.isDown())
+        {
+            Object::send(0, {Tag::List::bang});
+            m_led = true;
+            redraw();
+            return true;
+        }
+        else if(event.isUp())
+        {
+            m_led = false;
+            redraw();
+            return true;
+        }
+        return false;
+    }
+    
+    void Bang::draw(scGuiController ctrl, Sketch& sketch) const
+    {
+        const double borderSize = sketch.getWidth() * 0.1;
+       
+        const Rectangle ledRect = sketch.getBounds().reduced(sketch.getWidth() * 0.2);
+        sketch.fillAll(getAttrTyped<ColorValue>("bgcolor")->getValue());
+        sketch.setColor(getAttrTyped<ColorValue>("bdcolor")->getValue());
+        sketch.drawRectangle(sketch.getBounds().reduced(borderSize * 0.5), borderSize, 0);
+        sketch.setColor(getAttrTyped<ColorValue>("circlecolor")->getValue());
+        sketch.drawEllipse(ledRect, borderSize);
+        
+        if(m_led)
+        {
+            sketch.setColor(getAttrTyped<ColorValue>("ledcolor")->getValue());
+            sketch.fillEllipse(ledRect);
+        }
+    }
+    
+    bool Bang::notify(sAttr attr)
+    {
+        if(attr->getName() == "bgcolor" || attr->getName() == "bdcolor" || attr->getName() == "circlecolor")
+        {
+            cout << "attr changed : "<< attr->getName() << endl;
+            redraw();
+        }
+        return true;
     }
 }
 

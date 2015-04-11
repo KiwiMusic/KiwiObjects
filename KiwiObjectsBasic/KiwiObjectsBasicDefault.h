@@ -31,17 +31,18 @@ namespace Kiwi
     // ================================================================================ //
     //                                    NEWBOX                                        //
     // ================================================================================ //
-	
+	/*
 	class NewBox : public Object, public Kiwi::Default
     {
     public:
-        NewBox(Detail const& detail);
+        NewBox(Infos const& detail);
         ~NewBox();
 		
         void receive(ulong index, vector<Atom> const& atoms) override;
 		
 		void doubleClick() override {};
     };
+     */
 }
 
 #endif

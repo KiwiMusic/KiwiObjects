@@ -25,7 +25,8 @@
 
 namespace Kiwi
 {
-    NoiseTilde::NoiseTilde(Detail const& detail) : Object(detail, Tag::create("noise~")), DspNoise::White(detail.patcher, DspNoise::nextSeed())
+    /*
+    NoiseTilde::NoiseTilde(Infos const& detail) : Object(detail, Tag::create("noise~")), DspNoise::White(detail.patcher, DspNoise::nextSeed())
     {
         addOutlet(Io::Signal, "White noise (signal)");
     }
@@ -43,6 +44,6 @@ namespace Kiwi
     void NoiseTilde::bang()
     {
         ;
-    }
+    }*/
 }
 

@@ -28,19 +28,20 @@
 
 namespace Kiwi
 {
+    /*
     class DacTilde : public Object, public DspDac, public Kiwi::Button // Button for the moment
     {
     public:
-        DacTilde(Detail const& detail);
+        DacTilde(Infos const& detail);
         ~DacTilde();
         void receive(ulong index, vector<Atom> const& atoms) override;
     protected:
         void bang() override;
     };
-    
+    */
     inline void ObjectsIoTildeInit()
     {
-        Factory::add<DacTilde>();
+        //Factory::add<DacTilde>();
     }
 }
 

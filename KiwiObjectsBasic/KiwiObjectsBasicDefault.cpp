@@ -29,8 +29,8 @@ namespace Kiwi
     // ================================================================================ //
     //                                      NEWBOX                                      //
     // ================================================================================ //
-	
-	NewBox::NewBox(Detail const& detail) : Object(detail, Tag::create("newbox"))
+	/*
+	NewBox::NewBox(Infos const& detail) : Object(detail, Tag::create("newbox"))
 	{
 		;
 	}
@@ -43,5 +43,5 @@ namespace Kiwi
 	void NewBox::receive(ulong index, vector<Atom> const& atoms)
 	{
 		;
-	}
+	}*/
 }

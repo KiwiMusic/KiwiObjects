@@ -36,15 +36,18 @@ namespace Kiwi
     //                                      BANG                                        //
     // ================================================================================ //
     
-    class Bang : public Object, public Kiwi::Button, public Clock
+    class Bang : public Object, public GuiMouser, public Clock
     {
+    private:
+        atomic_bool m_led;
     public:
-        Bang(Detail const& detail);
+        Bang(Infos const& detail);
         ~Bang();
         void receive(ulong index, vector<Atom> const& atoms) override;
+        bool receive(scGuiController ctrl, MouseEvent const& event) override;
+        void draw(scGuiController ctrl, Sketch& sketch) const override;
+        bool notify(sAttr attr) override;
         void tick() override;
-    protected:
-        void bang() override;
     };
 }
 
