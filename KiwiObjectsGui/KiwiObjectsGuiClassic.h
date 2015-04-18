@@ -44,8 +44,8 @@ namespace Kiwi
         Bang(Infos const& detail);
         ~Bang();
         void receive(ulong index, vector<Atom> const& atoms) override;
-        bool receive(scGuiController ctrl, MouseEvent const& event) override;
-        void draw(scGuiController ctrl, Sketch& sketch) const override;
+        bool receive(scGuiView view, MouseEvent const& event) override;
+        void draw(scGuiView view, Sketch& sketch) const override;
         bool notify(sAttr attr) override;
         void tick() override;
     };

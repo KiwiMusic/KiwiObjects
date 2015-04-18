@@ -66,7 +66,7 @@ namespace Kiwi
         }
     }
     
-    bool Bang::receive(scGuiController ctrl, MouseEvent const& event)
+    bool Bang:: receive(scGuiView view, MouseEvent const& event)
     {
         if(event.isDown())
         {
@@ -84,14 +84,15 @@ namespace Kiwi
         return false;
     }
     
-    void Bang::draw(scGuiController ctrl, Sketch& sketch) const
+    void Bang:: draw(scGuiView ctrl, Sketch& sketch) const
     {
-        const double borderSize = sketch.getWidth() * 0.1;
+        const Rectangle bounds = Object::getBounds().withZeroOrigin();
+        const double borderSize = bounds.width() * 0.1;
        
-        const Rectangle ledRect = sketch.getBounds().reduced(sketch.getWidth() * 0.2);
+        const Rectangle ledRect = bounds.reduced(borderSize * 2.);
         sketch.fillAll(getAttrTyped<ColorValue>("bgcolor")->getValue());
         sketch.setColor(getAttrTyped<ColorValue>("bdcolor")->getValue());
-        sketch.drawRectangle(sketch.getBounds().reduced(borderSize * 0.5), borderSize, 0);
+        sketch.drawRectangle(bounds.reduced(borderSize * 0.5), borderSize, 0);
         sketch.setColor(getAttrTyped<ColorValue>("circlecolor")->getValue());
         sketch.drawEllipse(ledRect, borderSize);
         
