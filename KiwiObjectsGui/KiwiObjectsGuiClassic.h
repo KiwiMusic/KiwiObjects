@@ -41,13 +41,48 @@ namespace Kiwi
     private:
         atomic_bool m_led;
     public:
-        Bang(Infos const& detail);
+        Bang(Infos const& infos);
         ~Bang();
         void receive(ulong index, vector<Atom> const& atoms) override;
         bool receive(scGuiView view, MouseEvent const& event) override;
         void draw(scGuiView view, Sketch& sketch) const override;
         bool notify(sAttr attr) override;
         void tick() override;
+    };
+    
+    class NewObject : public Object
+    {
+    private:
+        const sGuiTextEditor m_editor;
+    public:
+        NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
+        m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
+        {
+            getAttrTyped<SizeValue>("size")->setValue(Size(100., 20., 10., 10.));
+            m_editor->setSize(Size(100., 20., 10., 10.));
+            m_editor->setKeyNotification(false, true);
+            add(m_editor);
+        }
+        
+        ~NewObject()
+        {
+            ;
+        }
+        
+        void receive(ulong index, vector<Atom> const& atoms) override
+        {
+        
+        }
+        
+        void draw(scGuiView view, Sketch& sketch) const override
+        {
+            ;
+        }
+        
+        bool notify(sAttr attr) override
+        {
+            return true;
+        }
     };
 }
 

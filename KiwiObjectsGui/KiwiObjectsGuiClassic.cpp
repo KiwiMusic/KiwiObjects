@@ -30,7 +30,7 @@ namespace Kiwi
     //                                      BANG                                        //
     // ================================================================================ //
     
-    Bang::Bang(Infos const& detail) : Object(detail, Tag::create("bang"))
+    Bang::Bang(Infos const& infos) : Object(infos, Tag::create("bang"))
     {
         addAttr(Attr::create("bgcolor", "Background Color", "Color", ColorValue(1., 1., 1., 1.)));
         addAttr(Attr::create("bdcolor", "Border Color",     "Color", ColorValue(0.4, 0.4, 0.4, 1.)));

@@ -31,6 +31,7 @@ namespace Kiwi
     inline void ObjectsGuiInitialize()
     {
         Factory::add<Bang>();
+        Factory::add<NewObject>();
     }
 }
 
