@@ -58,7 +58,7 @@ namespace Kiwi
         NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
         m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
-            getAttrTyped<SizeValue>("size")->setValue(Size(100., 20., 10., 10.));
+            getAttrTyped<Size>("size")->setValue(Size(100., 20., 10., 10.));
             m_editor->setSize(Size(100., 20., 10., 10.));
             m_editor->setKeyNotification(false, true);
             add(m_editor);

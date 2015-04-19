@@ -36,7 +36,7 @@ namespace Kiwi
         addAttr(Attr::create("bdcolor", "Border Color",     "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
         addAttr(Attr::create("circlecolor", "Circle Color", "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
         addAttr(Attr::create("ledcolor",    "Led Color",    "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
-        getAttrTyped<SizeValue>("size")->setValue(Size(20., 20., 10., 10., 1.));
+        getAttrTyped<Size>("size")->setValue(Size(20., 20., 10., 10., 1.));
         
         addInlet(Io::Message, Io::Hot, "Flash (anything)");
         addOutlet(Io::Message, "Output (bang)");
