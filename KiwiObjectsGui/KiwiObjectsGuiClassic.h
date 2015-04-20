@@ -50,7 +50,7 @@ namespace Kiwi
         void tick() override;
     };
     
-    class NewObject : public Object
+    class NewObject : public Object, public GuiTextEditor::Listener
     {
     private:
         const sGuiTextEditor m_editor;
@@ -82,6 +82,45 @@ namespace Kiwi
         bool notify(sAttr attr) override
         {
             return true;
+        }
+
+
+        void loaded() override
+        {
+            m_editor->addListener(getShared<Listener>());
+        }
+
+
+        void textChanged(sGuiTextEditor editor)
+        {
+            const Size size = editor->getTextSize();
+            if(size.width() > getSize().width() || size.height() > getSize().height())
+            {
+                m_editor->setSize(size);
+                getAttrTyped<Size>("size")->setValue(Size(size.width(), size.height(), 10., 10.));
+                setSize(Size(size.width(), size.height(), 10., 10.));
+                cout << size.width() << " " << size.height() << endl;
+            }
+        }
+
+        void returnKeyPressed(sGuiTextEditor editor)
+        {
+            cout << "returnKeyPressed" << endl;
+        }
+
+        void tabKeyPressed(sGuiTextEditor editor)
+        {
+            cout << "tabKeyPressed" << endl;
+        }
+
+        void escapeKeyPressed(sGuiTextEditor editor)
+        {
+            cout << "escapeKeyPressed" << endl;
+        }
+
+        void focusLost(sGuiTextEditor editor)
+        {
+            cout << "focusLost" << endl;
         }
     };
 }
