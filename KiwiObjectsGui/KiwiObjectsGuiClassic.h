@@ -99,7 +99,6 @@ namespace Kiwi
                 m_editor->setSize(size);
                 getAttrTyped<Size>("size")->setValue(Size(size.width(), size.height(), 10., 10.));
                 setSize(Size(size.width(), size.height(), 10., 10.));
-                cout << size.width() << " " << size.height() << endl;
             }
         }
 

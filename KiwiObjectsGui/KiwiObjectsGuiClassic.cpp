@@ -32,10 +32,10 @@ namespace Kiwi
     
     Bang::Bang(Infos const& infos) : Object(infos, Tag::create("bang"))
     {
-        addAttr(Attr::create("bgcolor", "Background Color", "Color", ColorValue(1., 1., 1., 1.)));
-        addAttr(Attr::create("bdcolor", "Border Color",     "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
-        addAttr(Attr::create("circlecolor", "Circle Color", "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
-        addAttr(Attr::create("ledcolor",    "Led Color",    "Color", ColorValue(0.4, 0.4, 0.4, 1.)));
+        addAttr(Attr::create("bgcolor", "Background Color", "Color", Color(1., 1., 1., 1.)));
+        addAttr(Attr::create("bdcolor", "Border Color",     "Color", Color(0.4, 0.4, 0.4, 1.)));
+        addAttr(Attr::create("circlecolor", "Circle Color", "Color", Color(0.4, 0.4, 0.4, 1.)));
+        addAttr(Attr::create("ledcolor",    "Led Color",    "Color", Color(0.4, 0.4, 0.4, 1.)));
         getAttrTyped<Size>("size")->setValue(Size(20., 20., 10., 10., true));
         
         addInlet(Io::Message, Io::Hot, "Flash (anything)");
@@ -90,15 +90,15 @@ namespace Kiwi
         const double borderSize = bounds.width() * 0.1;
        
         const Rectangle ledRect = bounds.reduced(borderSize * 2.);
-        sketch.fillAll(getAttrTyped<ColorValue>("bgcolor")->getValue());
-        sketch.setColor(getAttrTyped<ColorValue>("bdcolor")->getValue());
+        sketch.fillAll(getAttrTyped<Color>("bgcolor")->getValue());
+        sketch.setColor(getAttrTyped<Color>("bdcolor")->getValue());
         sketch.drawRectangle(bounds.reduced(borderSize * 0.5), borderSize, 0);
-        sketch.setColor(getAttrTyped<ColorValue>("circlecolor")->getValue());
+        sketch.setColor(getAttrTyped<Color>("circlecolor")->getValue());
         sketch.drawEllipse(ledRect, borderSize);
         
         if(m_led)
         {
-            sketch.setColor(getAttrTyped<ColorValue>("ledcolor")->getValue());
+            sketch.setColor(getAttrTyped<Color>("ledcolor")->getValue());
             sketch.fillEllipse(ledRect);
         }
     }
