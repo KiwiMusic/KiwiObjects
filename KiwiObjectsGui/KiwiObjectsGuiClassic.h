@@ -59,7 +59,8 @@ namespace Kiwi
         m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
             getAttrTyped<Size>("size")->setValue(Size(100., 20., 10., 10.));
-            m_editor->setSize(Size(100., 20., 10., 10.));
+            m_editor->setPosition(Point(2., 2.));
+            m_editor->setSize(Size(94., 16., 10., 10.));
             m_editor->setKeyNotification(false, true);
             add(m_editor);
         }
@@ -76,7 +77,10 @@ namespace Kiwi
         
         void draw(scGuiView view, Sketch& sketch) const override
         {
-            ;
+            sketch.fillAll(Colors::white);
+            sketch.setColor(Color(0.4, 0.4, 0.4, 1.));
+            const Size size = getSize();
+            sketch.drawRectangle(1., 1., size.width() -2., size.height() - 2., 2.);
         }
         
         bool notify(sAttr attr) override
@@ -96,9 +100,9 @@ namespace Kiwi
             const Size size = editor->getTextSize();
             if(size.width() > getSize().width() || size.height() > getSize().height())
             {
-                m_editor->setSize(size);
-                getAttrTyped<Size>("size")->setValue(Size(size.width(), size.height(), 10., 10.));
+                getAttrTyped<Size>("size")->setValue(Size(size.width() + 4, size.height() + 4., 10., 10.));
                 setSize(Size(size.width(), size.height(), 10., 10.));
+                editor->setSize(size);
             }
         }
 
