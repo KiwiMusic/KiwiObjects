@@ -21,7 +21,6 @@
  ==============================================================================
 */
 
-
 #include "KiwiObjectsGuiClassic.h"
 
 namespace Kiwi
@@ -36,7 +35,7 @@ namespace Kiwi
         addAttr(Attr::create("bdcolor", "Border Color",     "Color", Color(0.4, 0.4, 0.4, 1.)));
         addAttr(Attr::create("circlecolor", "Circle Color", "Color", Color(0.4, 0.4, 0.4, 1.)));
         addAttr(Attr::create("ledcolor",    "Led Color",    "Color", Color(0.4, 0.4, 0.4, 1.)));
-        getAttrTyped<Size>("size")->setValue(Size(20., 20., 10., 10., true));
+        setSize(Size(20., 20., 10., 10., true));
         
         addInlet(Io::Message, Io::Hot, "Flash (anything)");
         addOutlet(Io::Message, "Output (bang)");
@@ -55,18 +54,18 @@ namespace Kiwi
         redraw();
     }
     
-    void Bang::receive(ulong index, vector<Atom> const& atoms)
+    void Bang::receive(const ulong index, vector<Atom> const& atoms)
     {
         if(!atoms.empty())
         {
-            Object::send(0, {Tag::List::bang});
+            Object::send(0ul, {Tag::List::bang});
             m_led = true;
             redraw();
-            delay(150);
+            delay(150.);
         }
     }
     
-    bool Bang:: receive(scGuiView view, MouseEvent const& event)
+    bool Bang::receive(scGuiView view, MouseEvent const& event)
     {
         if(event.isDown())
         {

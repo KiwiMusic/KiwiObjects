@@ -43,7 +43,7 @@ namespace Kiwi
     public:
         Bang(Infos const& infos);
         ~Bang();
-        void receive(ulong index, vector<Atom> const& atoms) override;
+        void receive(const ulong index, vector<Atom> const& atoms) override;
         bool receive(scGuiView view, MouseEvent const& event) override;
         void draw(scGuiView view, Sketch& sketch) const override;
         bool notify(sAttr attr) override;
@@ -58,10 +58,11 @@ namespace Kiwi
         NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
         m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
-            getAttrTyped<Size>("size")->setValue(Size(100., 20., 10., 10.));
-            m_editor->setPosition(Point(2., 2.));
-            m_editor->setSize(Size(94., 16., 10., 10.));
-            m_editor->setKeyNotification(false, true);
+            setSize(Size(100., 20., 10., 10.));
+            m_editor->setPosition(Point(4., 4.));
+            m_editor->setSize(Size(92., 12., 10., 10.));
+            m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
+            m_editor->initialize();
             add(m_editor);
         }
         
@@ -92,23 +93,19 @@ namespace Kiwi
         void loaded() override
         {
             m_editor->addListener(getShared<Listener>());
+            m_editor->grabFocus();
         }
 
 
         void textChanged(sGuiTextEditor editor)
         {
-            const Size size = editor->getTextSize();
-            if(size.width() > getSize().width() || size.height() > getSize().height())
+            const Size textsize = editor->getTextSize();
+            const Size editorsize = editor->getSize();
+            if(textsize.width() > editorsize.width() || textsize.height() > editorsize.height())
             {
-                getAttrTyped<Size>("size")->setValue(Size(size.width() + 4, size.height() + 4., 10., 10.));
-                setSize(Size(size.width(), size.height(), 10., 10.));
-                editor->setSize(size);
+                setSize(Size(textsize.width() + 8., textsize.height() + 8., 10., 10.));
+                editor->setSize(textsize);
             }
-        }
-
-        void returnKeyPressed(sGuiTextEditor editor)
-        {
-            cout << "returnKeyPressed" << endl;
         }
 
         void tabKeyPressed(sGuiTextEditor editor)
