@@ -31,10 +31,10 @@ namespace Kiwi
     
     Bang::Bang(Infos const& infos) : Object(infos, Tag::create("bang"))
     {
-        addAttr(Attr::create("bgcolor", "Background Color", "Color", Color(1., 1., 1., 1.)));
-        addAttr(Attr::create("bdcolor", "Border Color",     "Color", Color(0.4, 0.4, 0.4, 1.)));
-        addAttr(Attr::create("circlecolor", "Circle Color", "Color", Color(0.4, 0.4, 0.4, 1.)));
-        addAttr(Attr::create("ledcolor",    "Led Color",    "Color", Color(0.4, 0.4, 0.4, 1.)));
+        createAttr(Tags::bgcolor,       "Background Color",   "Color", Color(1., 1., 1., 1.));
+        createAttr(Tags::bdcolor,       "Border Color",       "Color", Color(0.4, 0.4, 0.4, 1.));
+        createAttr(Tags::circlecolor,   "Circle Color",       "Color", Color(0.4, 0.4, 0.4, 1.));
+        createAttr(Tags::ledcolor,      "Led Color",          "Color", Color(0.4, 0.4, 0.4, 1.));
         setSize(Size(20., 20., 10., 10., true));
         
         addInlet(Io::Message, Io::Hot, "Flash (anything)");
@@ -58,7 +58,7 @@ namespace Kiwi
     {
         if(!atoms.empty())
         {
-            Object::send(0ul, {Tag::List::bang});
+            Object::send(0ul, {Tags::bang});
             m_led = true;
             redraw();
             delay(150.);
@@ -69,7 +69,7 @@ namespace Kiwi
     {
         if(event.isDown())
         {
-            Object::send(0, {Tag::List::bang});
+            Object::send(0, {Tags::bang});
             m_led = true;
             redraw();
             return true;
@@ -87,26 +87,23 @@ namespace Kiwi
     {
         const Rectangle bounds = Object::getBounds().withZeroOrigin();
         const double borderSize = bounds.width() * 0.1;
-       
         const Rectangle ledRect = bounds.reduced(borderSize * 2.);
-        sketch.fillAll(getAttrTyped<Color>("bgcolor")->getValue());
-        sketch.setColor(getAttrTyped<Color>("bdcolor")->getValue());
+        sketch.fillAll(getAttrValue<Color>(Tags::bgcolor));
+        sketch.setColor(getAttrValue<Color>(Tags::bdcolor));
         sketch.drawRectangle(bounds.reduced(borderSize * 0.5), borderSize, 0);
-        sketch.setColor(getAttrTyped<Color>("circlecolor")->getValue());
+        sketch.setColor(getAttrValue<Color>(Tags::circlecolor));
         sketch.drawEllipse(ledRect, borderSize);
-        
         if(m_led)
         {
-            sketch.setColor(getAttrTyped<Color>("ledcolor")->getValue());
+            sketch.setColor(getAttrValue<Color>(Tags::ledcolor));
             sketch.fillEllipse(ledRect);
         }
     }
     
     bool Bang::notify(sAttr attr)
     {
-        if(attr->getName() == "bgcolor" || attr->getName() == "bdcolor" || attr->getName() == "circlecolor")
+        if(attr->getName() == Tags::bgcolor || attr->getName() == Tags::bdcolor || attr->getName() == Tags::circlecolor)
         {
-            cout << "attr changed : "<< attr->getName() << endl;
             redraw();
         }
         return true;

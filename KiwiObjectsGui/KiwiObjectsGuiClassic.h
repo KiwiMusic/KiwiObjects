@@ -62,7 +62,6 @@ namespace Kiwi
             m_editor->setPosition(Point(4., 4.));
             m_editor->setSize(Size(92., 12., 10., 10.));
             m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
-            m_editor->initialize();
             add(m_editor);
         }
         
