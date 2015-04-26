@@ -100,10 +100,10 @@ namespace Kiwi
         {
             const Size textsize = editor->getTextSize();
             const Size editorsize = editor->getSize();
-            if(textsize.width() > editorsize.width() || textsize.height() > editorsize.height())
+            if(textsize.width() > editorsize.width() || textsize.height() != editorsize.height())
             {
-                setSize(Size(textsize.width() + 8., textsize.height() + 8., 10., 10.));
-                editor->setSize(textsize);
+                setSize(Size(max(textsize.width(), editorsize.width()) + 8., textsize.height() + 8., 10., 10.));
+                editor->setSize(Size(max(textsize.width(), editorsize.width()), textsize.height()));
             }
         }
 
