@@ -62,7 +62,7 @@ namespace Kiwi
             m_editor->setPosition(Point(4., 4.));
             m_editor->setSize(Size(92., 12., 10., 10.));
             m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
-            add(m_editor);
+            addChild(m_editor);
         }
         
         ~NewObject()
@@ -109,17 +109,8 @@ namespace Kiwi
 
         void tabKeyPressed(sGuiTextEditor editor)
         {
-            cout << "tabKeyPressed" << endl;
-        }
-
-        void escapeKeyPressed(sGuiTextEditor editor)
-        {
-            cout << "escapeKeyPressed" << endl;
-        }
-
-        void focusLost(sGuiTextEditor editor)
-        {
-            cout << "focusLost" << endl;
+            wstring text = editor->getText();
+            wcout << text << endl;
         }
     };
 }
