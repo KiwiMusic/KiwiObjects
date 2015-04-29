@@ -58,10 +58,14 @@ namespace Kiwi
         NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
         m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
-            setSize(Size(100., 20., 10., 10.));
+            //setSize(Size(100., 20., 10., 10.));
+            setSize(Size(100., 100., 10., 10.));
             m_editor->setPosition(Point(4., 4.));
-            m_editor->setSize(Size(92., 12., 10., 10.));
+            //m_editor->setSize(Size(92., 12., 10., 10.));
+            m_editor->setSize(Size(92., 92, 10., 10.));
             m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
+            m_editor->setDisplayMode(GuiTextEditor::Trail);
+            m_editor->setJustification(Font::Justification::Centred);
             addChild(m_editor);
         }
         
@@ -98,12 +102,20 @@ namespace Kiwi
 
         void textChanged(sGuiTextEditor editor)
         {
-            const Size textsize = editor->getTextSize();
+            const Size textsize = editor->getTextSize(92.);
             const Size editorsize = editor->getSize();
+            /*
             if(textsize.width() > editorsize.width() || textsize.height() != editorsize.height())
             {
                 setSize(Size(max(textsize.width(), editorsize.width()) + 8., textsize.height() + 8., 10., 10.));
                 editor->setSize(Size(max(textsize.width(), editorsize.width()), textsize.height()));
+            }
+             */
+            
+            if(textsize.height() != editorsize.height())
+            {
+                setSize(Size(100., textsize.height() + 8, 10., 10.));
+                editor->setSize(Size(92., textsize.height()));
             }
         }
 
