@@ -89,10 +89,12 @@ namespace Kiwi
         const double borderSize = bounds.width() * 0.1;
         const Rectangle ledRect = bounds.reduced(borderSize * 2.);
         sketch.fillAll(getAttrValue<Color>(Tags::bgcolor));
+        sketch.setLineWidth(borderSize);
         sketch.setColor(getAttrValue<Color>(Tags::bdcolor));
-        sketch.drawRectangle(bounds.reduced(borderSize * 0.5), borderSize, 0);
+        sketch.drawRectangle(bounds.reduced(borderSize * 0.5));
         sketch.setColor(getAttrValue<Color>(Tags::circlecolor));
-        sketch.drawEllipse(ledRect, borderSize);
+        sketch.drawEllipse(ledRect);
+        
         if(m_led)
         {
             sketch.setColor(getAttrValue<Color>(Tags::ledcolor));
