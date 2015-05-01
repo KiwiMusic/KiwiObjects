@@ -58,14 +58,12 @@ namespace Kiwi
         NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
         m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
-            //setSize(Size(100., 20., 10., 10.));
             setSize(Size(100., 100., 10., 10.));
             m_editor->setPosition(Point(4., 4.));
-            //m_editor->setSize(Size(92., 12., 10., 10.));
-            m_editor->setSize(Size(92., 92, 10., 10.));
+            m_editor->setSize(Size(92., 12., 10., 10.));
             m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
-            m_editor->setDisplayMode(GuiTextEditor::Trail);
-            m_editor->setJustification(Font::Justification::Centred);
+            m_editor->setWrapped(true);
+            m_editor->setJustification(Font::Justification::Left);
             addChild(m_editor);
         }
         
@@ -82,9 +80,13 @@ namespace Kiwi
         void draw(scGuiView view, Sketch& sketch) const override
         {
             sketch.fillAll(Colors::white);
-            sketch.setColor(Color(0.4, 0.4, 0.4, 1.));
-            const Size size = getSize();
-            sketch.drawRectangle(1., 1., size.width() -2., size.height() - 2., 2.);
+            const Rectangle bounds(sketch.getBounds());
+            if(bounds.x() < 4. && bounds.y() < 4.)
+            {
+                const Size size(getSize());
+                sketch.setColor(Color(0.4, 0.4, 0.4, 1.));
+                sketch.drawRectangle(1., 1., size.width() -2., size.height() - 2., 2.);
+            }
         }
         
         bool notify(sAttr attr) override
@@ -110,8 +112,7 @@ namespace Kiwi
                 setSize(Size(max(textsize.width(), editorsize.width()) + 8., textsize.height() + 8., 10., 10.));
                 editor->setSize(Size(max(textsize.width(), editorsize.width()), textsize.height()));
             }
-             */
-            
+            */
             if(textsize.height() != editorsize.height())
             {
                 setSize(Size(100., textsize.height() + 8, 10., 10.));
