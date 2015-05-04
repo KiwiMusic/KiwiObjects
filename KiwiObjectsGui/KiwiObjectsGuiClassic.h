@@ -85,7 +85,8 @@ namespace Kiwi
             {
                 const Size size(getSize());
                 sketch.setColor(Color(0.4, 0.4, 0.4, 1.));
-                sketch.drawRectangle(1., 1., size.width() -2., size.height() - 2., 2.);
+                sketch.setLineWidth(2.);
+                sketch.drawRectangle(1., 1., size.width() -2., size.height() - 2.);
             }
         }
         
@@ -118,6 +119,7 @@ namespace Kiwi
                 setSize(Size(100., textsize.height() + 8, 10., 10.));
                 editor->setSize(Size(92., textsize.height()));
             }
+            
         }
 
         void tabKeyPressed(sGuiTextEditor editor)
