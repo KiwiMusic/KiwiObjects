@@ -80,10 +80,10 @@ namespace Kiwi
         void draw(scGuiView view, Sketch& sketch) const override
         {
             sketch.fillAll(Colors::white);
+            const Size size(getSize());
             const Rectangle bounds(sketch.getBounds());
-            if(bounds.x() < 4. && bounds.y() < 4.)
+            if(bounds.x() < 2. || bounds.y() < 2. || bounds.bottom() > size.height() - 2. || bounds.right() > size.width() - 2.)
             {
-                const Size size(getSize());
                 sketch.setColor(Color(0.4, 0.4, 0.4, 1.));
                 sketch.setLineWidth(2.);
                 sketch.drawRectangle(1., 1., size.width() -2., size.height() - 2.);
@@ -105,27 +105,26 @@ namespace Kiwi
 
         void textChanged(sGuiTextEditor editor)
         {
-            const Size textsize = editor->getTextSize(92.);
+            const Size textsize = editor->getTextSize();
             const Size editorsize = editor->getSize();
-            /*
+            
             if(textsize.width() > editorsize.width() || textsize.height() != editorsize.height())
             {
                 setSize(Size(max(textsize.width(), editorsize.width()) + 8., textsize.height() + 8., 10., 10.));
                 editor->setSize(Size(max(textsize.width(), editorsize.width()), textsize.height()));
             }
-            */
+            /*
             if(textsize.height() != editorsize.height())
             {
                 setSize(Size(100., textsize.height() + 8, 10., 10.));
                 editor->setSize(Size(92., textsize.height()));
             }
-            
+            */
         }
 
         void tabKeyPressed(sGuiTextEditor editor)
         {
-            wstring text = editor->getText();
-            wcout << text << endl;
+            wcout << editor->getText() << endl;
         }
     };
 }

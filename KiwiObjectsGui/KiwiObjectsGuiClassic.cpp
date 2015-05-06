@@ -83,7 +83,7 @@ namespace Kiwi
         return false;
     }
     
-    void Bang:: draw(scGuiView view, Sketch& sketch) const
+    void Bang::draw(scGuiView view, Sketch& sketch) const
     {
         const Rectangle bounds = Object::getBounds().withZeroOrigin();
         const double borderSize = bounds.width() * 0.1;
