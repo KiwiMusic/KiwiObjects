@@ -22,26 +22,83 @@
 */
 
 
-#include "KiwiObjectsBasicDefault.h"
+#include "KiwiObjectsMath.h"
 
 namespace Kiwi
 {
+    
     // ================================================================================ //
-    //                                      NEWBOX                                      //
+    //                                    PLUS                                          //
     // ================================================================================ //
-	/*
-	NewBox::NewBox(Infos const& detail) : Object(detail, Tag::create("newbox"))
-	{
-		;
-	}
 	
-	NewBox::~NewBox()
-	{
-		;
-	}
-	
-	void NewBox::receive(ulong index, vector<Atom> const& atoms)
-	{
-		;
-	}*/
+    ObjectPlus::ObjectPlus(Infos const& infos) : Box(infos, Tag::create("+")),
+    m_addend(0.),
+    m_augend(0.)
+    {
+        addInlet(Io::Message, Io::Hot, "Addend");
+        if(infos.args.empty())
+        {
+            addInlet(Io::Message, Io::Cold, "Augend");
+        }
+        else
+        {
+            if(infos.args[0].isNumber())
+            {
+                m_augend = double(infos.args[0]);
+            }
+            else
+            {
+                error(Errors::WrongArgument());
+            }
+            if(infos.args.size() > 1ul)
+            {
+                throw Errors::WrongArgument();
+            }
+        }
+        addOutlet(Io::Message, "Sum");
+    }
+    
+    ObjectPlus::~ObjectPlus()
+    {
+        ;
+    }
+    
+    void ObjectPlus::receive(const ulong index, vector<Atom> const& atoms)
+    {
+        if(index)
+        {
+            if(!atoms.empty() && atoms[0].isNumber())
+            {
+                m_augend = double(atoms[0]);
+            }
+            else
+            {
+                warning(Errors::WrongArgument());
+            }
+        }
+        else
+        {
+            if(!atoms.empty())
+            {
+                if(atoms[0].isNumber())
+                {
+                    m_augend = double(atoms[0]);
+                    send(0ul, m_addend + m_augend);
+                }
+                else if(atoms[0].isTag() && sTag(atoms[0]) == Tags::bang)
+                {
+                    send(0ul, m_addend + m_augend);
+                }
+                else
+                {
+                    warning(Errors::WrongArgument());
+                }
+            }
+            else
+            {
+                warning(Errors::WrongArgument());
+            }
+        }
+    }
+    
 }

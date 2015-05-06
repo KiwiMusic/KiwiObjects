@@ -21,28 +21,26 @@
  ==============================================================================
 */
 
-#ifndef __DEF_KIWI_OBJECTS_BASIC_DEFAULT__
-#define __DEF_KIWI_OBJECTS_BASIC_DEFAULT__
+#ifndef __DEF_KIWI_OBJECTS_MATH__
+#define __DEF_KIWI_OBJECTS_MATH__
 
-#include "../../KiwiPatcher/KiwiPatcher.h"
+#include "../KiwiPatcher/KiwiPatcher.h"
 
 namespace Kiwi
 {
     // ================================================================================ //
-    //                                    NEWBOX                                        //
+    //                                    PLUS                                          //
     // ================================================================================ //
-	/*
-	class NewBox : public Object, public Kiwi::Default
+	
+	class ObjectPlus : public Box
     {
+        double m_addend;
+        double m_augend;
     public:
-        NewBox(Infos const& detail);
-        ~NewBox();
-		
-        void receive(ulong index, vector<Atom> const& atoms) override;
-		
-		void doubleClick() override {};
+        ObjectPlus(Infos const& infos);
+        ~ObjectPlus();
+        void receive(const ulong index, vector<Atom> const& atoms) override;
     };
-     */
 }
 
 #endif

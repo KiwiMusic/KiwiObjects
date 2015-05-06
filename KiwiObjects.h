@@ -24,6 +24,7 @@
 #ifndef __DEF_KIWI_OBJECTS__
 #define __DEF_KIWI_OBJECTS__
 
+#include "KiwiObjectsMath.h"
 #include "KiwiObjectsBasic/KiwiObjectsBasic.h"
 #include "KiwiObjectsGui/KiwiObjectsGui.h"
 #include "KiwiObjectsDsp/KiwiObjectsDsp.h"
@@ -32,6 +33,8 @@ namespace Kiwi
 {
     inline bool ObjectsInitialize()
     {
+        Factory::add<ObjectPlus>();
+        
 		ObjectsBasicsInitialize();
 		ObjectsGuiInitialize();
         ObjectsTildeInitialize();
