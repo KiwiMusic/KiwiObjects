@@ -58,9 +58,11 @@ namespace Kiwi
         NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
         m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
+            /*
             setSize(Size(100., 100., 10., 10.));
             m_editor->setPosition(Point(4., 4.));
             m_editor->setSize(Size(92., 12., 10., 10.));
+             */
             m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
             m_editor->setWrapped(true);
             m_editor->setJustification(Font::Justification::Left);
@@ -106,6 +108,7 @@ namespace Kiwi
         void textChanged(sGuiTextEditor editor)
         {
             const Size textsize = editor->getTextSize();
+            /*
             const Size editorsize = editor->getSize();
             
             if(textsize.width() > editorsize.width() || textsize.height() != editorsize.height())
@@ -113,6 +116,7 @@ namespace Kiwi
                 setSize(Size(max(textsize.width(), editorsize.width()) + 8., textsize.height() + 8., 10., 10.));
                 editor->setSize(Size(max(textsize.width(), editorsize.width()), textsize.height()));
             }
+             */
             /*
             if(textsize.height() != editorsize.height())
             {
