@@ -45,7 +45,7 @@ namespace Kiwi
         ~Bang();
         void receive(const ulong index, vector<Atom> const& atoms) override;
         bool receive(scGuiView view, MouseEvent const& event) override;
-        void draw(scGuiView view, Sketch& sketch) const override;
+        void draw(scGuiView view, Sketch& sketch) const;
         bool notify(sAttr attr) override;
         void tick() override;
     };
@@ -79,7 +79,7 @@ namespace Kiwi
         
         }
         
-        void draw(scGuiView view, Sketch& sketch) const override
+        void draw(scGuiView view, Sketch& sketch) const
         {
             sketch.fillAll(Colors::white);
             const Size size(getSize());
