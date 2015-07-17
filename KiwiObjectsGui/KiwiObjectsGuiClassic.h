@@ -55,18 +55,20 @@ namespace Kiwi
     private:
         const sGuiTextEditor m_editor;
     public:
-        NewObject(Infos const& infos) : Object(infos, Tag::create("newobject")),
-        m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
+        NewObject(Infos const& infos) : Object(infos, Tag::create("newobject"))
+        //m_editor(make_shared<GuiTextEditor>(infos.instance ? infos.instance : sGuiContext()))
         {
             /*
             setSize(Size(100., 100., 10., 10.));
             m_editor->setPosition(Point(4., 4.));
             m_editor->setSize(Size(92., 12., 10., 10.));
              */
+            /*
             m_editor->setTabKeyBehavior(GuiTextEditor::Notify);
             m_editor->setWrapped(true);
             m_editor->setJustification(Font::Justification::Left);
             addChild(m_editor);
+            */
         }
         
         ~NewObject()
@@ -100,14 +102,14 @@ namespace Kiwi
 
         void loaded() override
         {
-            m_editor->addListener(getShared<Listener>());
-            m_editor->grabFocus();
+            //m_editor->addListener(getShared<Listener>());
+            //m_editor->grabFocus();
         }
 
 
         void textChanged(sGuiTextEditor editor)
         {
-            const Size textsize = editor->getTextSize();
+            //const Size textsize = editor->getTextSize();
             /*
             const Size editorsize = editor->getSize();
             
@@ -128,7 +130,7 @@ namespace Kiwi
 
         void tabKeyPressed(sGuiTextEditor editor)
         {
-            wcout << editor->getText() << endl;
+            //wcout << editor->getText() << endl;
         }
     };
 }
